@@ -1,13 +1,26 @@
 <template>
   <div class="login">
     <div class="loginBox">
-      <header>logo</header>
-      <div class="field">
-        <input type="text" icon="user-o"/>
-        <input type="password" icon="closed-eye"/>
-      </div>
-      <button>登录</button>
+      <van-cell-group>
+        <van-field
+          v-model="username"
+          required
+          clearable
+          label="用户名"
+          placeholder="请输入用户名"
+        />
+
+        <van-field
+          v-model="password"
+          type="password"
+          label="密码"
+          placeholder="请输入密码"
+          required
+        />
+      </van-cell-group>
+      <button @click="toLogin()">登录</button>
     </div>
+    
   </div>
 </template>
 
@@ -15,12 +28,19 @@
 export default {
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      username: '122323',
+      password: '1232434'
+    }
+  },
+  methods:{
+    toLogin(){
+      this.$router.push({path:'/user/homeIndex'})
     }
   }
 }
 </script>
-<style>
+<style scoped>
   .login{
     background-image:url('~@/assets/login.jpg');
     background-repeat:no-repeat;
@@ -35,22 +55,13 @@ export default {
     bottom: 0;
   }
   .loginBox{
-    width:260px;
-    height:200px;
-    position:absolute;
-    top:50%;
-    left:50%;
-    margin-top:-130px;
-    margin-left:-130px;
+    margin-top: 200px;
   }
-  input{
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    width: 80%;
-    height: 30px;
-    margin-top: 10px;
-    outline:none;
+  .loginBox >>> .van-cell-group{
+    background: transparent !important;
+  }
+  .loginBox >>> .van-field{
+    background: transparent !important;
   }
   button{
     width: 90px;
