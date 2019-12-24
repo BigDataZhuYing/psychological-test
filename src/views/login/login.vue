@@ -34,6 +34,7 @@ export default {
     }
   },
   methods:{
+    // 路由跳转
     toLogin(){
       this.$router.push({path:'/user/homeIndex'})
     }
