@@ -42,7 +42,7 @@ export default {
 </script>
 <style scoped>
   .login{
-    background-image:url('~@/assets/login.jpg');
+    background-image:url('~@/assets/login1.jpg');
     background-repeat:no-repeat;
     background-size:100% 100%;
     -moz-background-size:100% 100%;
@@ -58,17 +58,15 @@ export default {
     margin-top: 200px;
   }
   .loginBox >>> .van-cell-group{
-    background: transparent !important;
-  }
-  .loginBox >>> .van-field{
-    background: transparent !important;
+    margin: 0 10%;
+
   }
   button{
-    width: 90px;
+    width: 80%;
     height: 30px;
     background: #3693e8;
     border: 1px solid #6ca0e8;
-    border-radius: 5px;
+    border-radius: 15px;
     margin-top: 35px;
     color: #fff;
     outline:none;

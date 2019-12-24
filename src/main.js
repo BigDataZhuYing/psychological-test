@@ -19,7 +19,12 @@ import { Icon,List,Cell, CellGroup,Picker,DatetimePicker,NumberKeyboard,Password
 import { NavBar } from 'vant';
 import { Toast } from 'vant';
 import { Popup,Uploader } from 'vant';
-Vue.use(Button).use(Tab).use(Toast).use(Tabs).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem).use(Row).use(Col).use(Panel).use(Icon).use(NavBar).use(List).use(Cell).use(CellGroup).use(Popup).use(Picker).use(DatetimePicker).use(NumberKeyboard).use(PasswordInput).use(Field).use(NoticeBar).use(Dialog).use(Circle).use(Progress).use(Tag).use(RadioGroup).use(Radio).use(Uploader).use(ImagePreview).use(DropdownMenu).use(DropdownItem).use(PullRefresh);
+import { Search } from 'vant';
+Vue.use(Button).use(Tab).use(Toast).use(Tabs).use(Tabbar).use(TabbarItem).use(Swipe).use(SwipeItem)
+.use(Row).use(Col).use(Panel).use(Icon).use(NavBar).use(List).use(Cell).use(CellGroup).use(Popup)
+.use(Picker).use(DatetimePicker).use(NumberKeyboard).use(PasswordInput).use(Field).use(NoticeBar)
+.use(Dialog).use(Circle).use(Progress).use(Tag).use(RadioGroup).use(Radio).use(Uploader)
+.use(ImagePreview).use(DropdownMenu).use(DropdownItem).use(PullRefresh).use(Search);
 
 Vue.use(VueAxios,axios);
 Vue.config.productionTip = false
