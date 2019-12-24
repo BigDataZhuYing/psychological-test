@@ -43,7 +43,7 @@ export default {
 </script>
 <style scoped>
   .login{
-    background-image:url('~@/assets/login.jpg');
+    background-image:url('~@/assets/login1.jpg');
     background-repeat:no-repeat;
     background-size:100% 100%;
     -moz-background-size:100% 100%;
