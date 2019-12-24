@@ -1,11 +1,11 @@
 <template>
 <div class="home">
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" v-if="isShow">
         <van-tabbar-item icon="home-o" @click="goPage('/user/homeIndex')">标签</van-tabbar-item>
         <van-tabbar-item icon="friends-o" :dot="true"  @click="goPage('/user/consult')">标签</van-tabbar-item>
-        <van-tabbar-item icon="chart-trending-o" info="5"  @click="goPage('/user/statistics')">标签</van-tabbar-item>
-        <van-tabbar-item icon="notes-o" info="20" @click="goPage('/user/test')">标签</van-tabbar-item>
-        <van-tabbar-item icon="manager-o" info="20" @click="goPage('/user/myset')">标签</van-tabbar-item>
+        <van-tabbar-item icon="chart-trending-o" info="5" :dot="true"  @click="goPage('/user/statistics')">标签</van-tabbar-item>
+        <van-tabbar-item icon="notes-o" :dot="true" @click="goPage('/user/test')">标签</van-tabbar-item>
+        <van-tabbar-item icon="manager-o" :dot="true" @click="goPage('/user/myset')">标签</van-tabbar-item>
     </van-tabbar>
     <router-view></router-view>
 </div>
@@ -14,12 +14,22 @@
 export default {
   data() {
     return {
-      active: 0
+      active: 0,
+      isShow: true
     }
   },
   methods: {
     goPage(path) {
         this.$router.push({ path: path});
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if(to.name == 'homeIndex' || to.name == 'consult' || to.name == 'statistics' || to.name == 'myset' || to.name == 'test') {
+          console.log(111);
+      }else {
+
+      }
     }
   }
 }
