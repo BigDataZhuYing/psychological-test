@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div class="loginBox">
+      <!-- <div><img src="~@/assets/aa.png"/></div> -->
       <van-cell-group>
         <van-field
           v-model="username"
@@ -25,12 +26,14 @@
 </template>
 
 <script>
+import img from '@/assets/aa.png'
 export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       username: '122323',
-      password: '1232434'
+      password: '1232434',
+      img:'@/assets/aa.png'
     }
   },
   methods:{
@@ -43,7 +46,7 @@ export default {
 </script>
 <style scoped>
   .login{
-    background-image:url('~@/assets/login1.jpg');
+    background-image:url('~@/assets/aa.png');
     background-repeat:no-repeat;
     background-size:100% 100%;
     -moz-background-size:100% 100%;
@@ -56,7 +59,7 @@ export default {
     bottom: 0;
   }
   .loginBox{
-    margin-top: 200px;
+    margin-top: 385px;
   }
   .loginBox >>> .van-cell-group{
     margin: 0 10%;

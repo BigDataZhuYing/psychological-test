@@ -6,6 +6,7 @@
     <div class="settings" v-for="(item, index) of settings" :key="index" @click="topage(index)">
       <van-cell :title="item.title" is-link :icon="item.icon"/>
     </div>
+    <div class="logout">退出登录</div>
   </div>
 </template>
 <script>
@@ -13,10 +14,9 @@ export default {
   data () {
     return {
       settings:[
-        {title: '单元格', icon: 'shop-o'},
-        {title: '单元格', icon: 'shop-o'},
-        {title: '单元格', icon: 'shop-o'},
-        {title: '单元格', icon: 'shop-o'},
+        {title: '个人资料', icon: 'shop-o'},
+        {title: '账号安全', icon: 'shop-o'},
+        {title: '版本', icon: 'shop-o'},
       ]
     }
   },
@@ -57,6 +57,14 @@ export default {
     display: inline-block;
     background: yellow;
     border-radius: 25px;
-    margin: 20px 35px;
+    margin: 20px 20px;
+  }
+  .logout{
+    margin-top: 100px;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    height: 45px;
+    line-height: 45px;
+    color: #8e7b9c;
   }
 </style>
