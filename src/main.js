@@ -7,6 +7,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'vant/lib/index.css';
 import echarts from 'echarts'
+import store from './store/index'
 Vue.prototype.$echarts = echarts
 // vant组件
 import { Button } from 'vant';
@@ -33,6 +34,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

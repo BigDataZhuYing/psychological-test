@@ -42,9 +42,13 @@ export default new Router({
         },
         {
           path: 'homeIndex',
-
           name: 'homeIndex',
           component: resolve =>require(['../views/user/home/home'],resolve),
+        },
+        {
+          path: 'teaching',
+          name: 'teaching',
+          component: resolve =>require(['../views/user/home/teaching'],resolve),
         },
         {
           path: 'consult',

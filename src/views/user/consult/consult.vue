@@ -13,13 +13,16 @@
     </div>
     <div class="contant">
       <div class="cont-item" v-for="(item, index) of dataConfig" :key="index" @click="topage(index)" >
-        <div class="cont-left">
-          <span>{{item.head}}</span>
+        <div :class="{'selected':index == selectedIndex}">
+          <div class="cont-left">
+            <span>{{item.name.substr(item.name.length - 2)}}</span>
+          </div>
+          <div class="cont-right">
+            <span>{{item.name}}</span>
+            <span>{{item.content}}</span>
+          </div>
         </div>
-        <div class="cont-right">
-          <span>{{item.name}}</span>
-          <span>{{item.content}}</span>
-        </div>
+        
       </div>
     </div>
   </div>
@@ -29,10 +32,11 @@ export default {
   data() {
     return {
       value: null,
+      selectedIndex: -1,
       dataConfig:[
-        {head: '', name: '超', content: 'ffffff'},
+        {head: '', name: '赵起超', content: 'ffffff'},
         {head: '', name: '王杰', content: 'hdfuhjh'},
-        {head: '', name: '就换个号', content: 'dfsddddd'},
+        {head: '', name: '朱莹', content: 'dfsddddd'},
         {head: '', name: '空间很大声', content: 'kyuughhhh'},
       ]
     }
@@ -45,7 +49,10 @@ export default {
 
     },
     topage(i) {
-      alert(i);
+      this.selectedIndex = i;
+      setTimeout(() => {
+        this.selectedIndex = 5;
+      },500)
     }
   }
 }
@@ -65,7 +72,7 @@ export default {
 .cont-item{
   border-bottom: 1px solid #e9e9e9;
   height: 50px;
-  padding: 5px 0;
+  margin: 5px 0;
 }
 .cont-left{
   float: left;
@@ -80,6 +87,9 @@ export default {
   height: 100%;
   border-radius: 25px;
   background: #1890ff;
+  line-height: 40px;
+  font-size: 15px;
+  color: #fff;
 }
 .cont-right{
   float: left;
@@ -97,7 +107,7 @@ export default {
   font-size: 14px;
 }
 .selected{
-  background: #f2f3f5;
+  background: #f7f8fa;
+  height: 100%;
 }
-
 </style>

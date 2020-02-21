@@ -1,11 +1,11 @@
 <template>
 <div class="home">
     <van-tabbar v-model="active" v-if="isShow">
-        <van-tabbar-item icon="home-o" @click="goPage('/user/homeIndex')">标签</van-tabbar-item>
-        <van-tabbar-item icon="friends-o" :dot="true"  @click="goPage('/user/consult')">标签</van-tabbar-item>
-        <van-tabbar-item icon="chart-trending-o" info="5" :dot="true"  @click="goPage('/user/statistics')">标签</van-tabbar-item>
-        <van-tabbar-item icon="notes-o" :dot="true" @click="goPage('/user/test')">标签</van-tabbar-item>
-        <van-tabbar-item icon="manager-o" :dot="true" @click="goPage('/user/myset')">标签</van-tabbar-item>
+        <van-tabbar-item icon="home-o" @click="goPage('/user/homeIndex')">首页</van-tabbar-item>
+        <van-tabbar-item icon="friends-o" :dot="true"  @click="goPage('/user/consult')">咨询</van-tabbar-item>
+        <van-tabbar-item icon="chart-trending-o" info="5" :dot="true"  @click="goPage('/user/statistics')">统计</van-tabbar-item>
+        <van-tabbar-item icon="notes-o" :dot="true" @click="goPage('/user/test')">测评</van-tabbar-item>
+        <van-tabbar-item icon="manager-o" :dot="true" @click="goPage('/user/myset')">我的</van-tabbar-item>
     </van-tabbar>
     <router-view></router-view>
 </div>
