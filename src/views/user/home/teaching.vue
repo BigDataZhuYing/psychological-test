@@ -69,9 +69,9 @@
         this.isEject =true;
       },
       send() {
-        this.isEject =false;
-        // this.commentTotal.unshift({name: '朱莹',content: this.chatContent});
         this.$store.commit('changeComment',{name: '朱莹',content: this.chatContent})
+        this.isEject =false;
+        this.chatContent = '';
       }
     }
   }

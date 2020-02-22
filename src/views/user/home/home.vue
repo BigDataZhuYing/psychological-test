@@ -2,7 +2,7 @@
 <div class="home">
   <div style="height:100%">
     <div class="head">
-      <span class="logo"><img  src="~@/assets/school.jpg" alt=""></span>
+      <span class="logo"><img  src="~@/assets/school.png" alt=""></span>
       <span>河北北方学院</span>
     </div>
     <div class="box">
@@ -30,15 +30,17 @@
           </div>
         </div>
       </div>
-      <div class="stu-content" v-for="( item, index) of studentComment" :key="index">
+      <div class="stu-content" v-for="( item, index) of studentComment" :key="index" >
         <div >
           <div class="title">
             <span class="title-title">{{item.name.substr(item.name.length - 2)}}</span>
             <span style="font-size: 14px;">{{item.time}} | 河北北方学院</span>
           </div>
           <div class="content-box-top">
-            <div class="content" style="overflow:hidden;" >{{item.content}}</div>
-            <div class="content-btn">展开/收起</div>
+            <div :class="{content: item.isHidden}" ref="box">{{item.content}}</div>
+            <div class="content-btn">
+              <span v-if="item.overstep" style="font-size:14px" @click="open(index,item.isHidden)">{{item.isHidden ? '阅读全文' : '收起'}}</span>
+            </div>
             <div class="operation">
               <!-- <span><van-icon name="chat" />评论</span> -->
               <span><van-icon :name="item.like ? 'like': 'like-o'" class="like" @click="itemLike(index)"/>喜欢</span>
@@ -46,6 +48,16 @@
           </div>
         </div>
       </div>
+      <button class="release" ref="release" @click="toTrends()">
+        <van-icon name="plus" />
+      </button>
+    </div>
+  </div>
+  <div class="trends"  :style="{display: showTrends}">
+    <header><span @click="cancel()">×</span> 发布动态 <span @click="send()">发送</span></header>
+    <div class="trends-content">
+      <textarea name="" id="" v-model="newMessage" ref="focusTextarea" placeholder="畅所欲言，给心灵一片晴空..."></textarea>
+      <p>500字</p>
     </div>
   </div>
 </div>
@@ -87,24 +99,31 @@
           star: false,
           like: false,
         },
-        studentComment: [
-          {index: 'comment0', name: '朱莹', time: '02/01 12:23', content:'还会记得回家的解决房价还会发毒贩夫妇付付付电动蝶阀多付付付付', like: false},
-          {index: 'comment1', name: '朱莹', time: '02/01 12:23', content:'还会记得回家的解决房价还会发毒贩夫妇付付付电动蝶阀多付付付付', like: false},
-          {index: 'comment2', name: '朱莹', time: '02/01 12:23', content:'还会记得回家的解决房价还会发毒贩夫妇付付付电动蝶阀多付付付付', like: false},
-          {index: 'comment3', name: '朱莹', time: '02/01 12:23', content:'还会记得回家的解决房价还会发毒贩夫妇付付付电动蝶阀多付付付付', like: false},
-        ]
+        studentComment: [],
+        showTrends: 'none',
+        newMessage: ''
       }
     },
     created() {
       this.teachingconfig.star = this.$route.params.star;
       this.teachingconfig.like = this.$route.params.like;
+      this.studentComment = this.$store.state.studentComment;
     },
     mounted(){
-      
-      
+      this.update();
+      this.$refs.focusTextarea.focus();
       
     },
     methods: {
+      update() {
+        this.$refs['box'].forEach((item, index) => {
+          if (item.offsetHeight > 63) {
+            this.studentComment[index].overstep = true;
+            this.studentComment[index].isHidden = true;
+          }
+          console.log(this.studentComment[index].overstep,this.studentComment[index].isHidden);
+        });
+      },
       teachingDetail() {
         this.$router.push({
            name: 'teaching',
@@ -122,7 +141,25 @@
       },
       itemLike(index) {
         this.studentComment[index].like = !this.studentComment[index].like;
+      },
+      open(index, state) {
+        this.studentComment[index].isHidden = !state;
+      },
+      toTrends() {
+        this.showTrends = 'block';       
+        this.$nextTick(_=> {
+          this.$refs.focusTextarea.focus();          
+        },3000)
+      },
+      cancel() {
+        this.showTrends = 'none';
+      },
+      send() {
+        this.showTrends = 'none';
+        this.$store.commit('changeStudentComment',{overstep: false, isHidden: false, name: '朱莹', time: '02/21 12:23', content:this.newMessage, like: false})
+        
       }
+      
     }
   }
 </script>
@@ -239,9 +276,12 @@
 }
 .stu-content .content-box-top .content{
   height: 63px;
+  overflow:hidden;
 }
 .content-btn{
   color: #1890ff;
+  margin-top: 5px;
+  height: 21px;
 }
 .stu-content .content-box-top .operation{
   text-align: right;
@@ -262,5 +302,65 @@
 }
 .star{
   color: #ff9900;
+}
+.release{
+  border-radius: 25px;
+  position: fixed;
+  right: 15px;
+  bottom: 65px;
+  background: #1890ff;
+  border: none;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+}
+.release >>> .van-icon{
+  font-size: 25px!important;
+}
+.trends{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  color: #000;
+  z-index: 500;
+}
+.trends header{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+}
+.trends header span:nth-child(2){
+  position: absolute;
+  right: 20px;
+}
+.trends header span:nth-child(1){
+  position: absolute;
+  left: 20px;
+  font-size: 36px;
+}
+.trends .trends-content{
+  height: calc(100% - 50px);
+}
+.trends .trends-content textarea{
+  background: #e5e5e5;
+  border: none;
+  height: calc(100% - 60px);
+  width: calc(100% - 20px);
+  padding: 10px;
+}
+.trends .trends-content p{
+  padding: 0;
+  margin: 0;
+  height: 40px;
+  line-height: 40px;
+  text-align: right;
+  padding-right: 10px;
+  color: #C11;
 }
 </style>

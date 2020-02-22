@@ -11,6 +11,7 @@
     <div  v-for="(item, index) of settings" :key="index" @click="topage(index)" >
       <van-cell :title="item.title" is-link :icon="item.icon" :class="{'setting':index == settingIndex}"/>
     </div>
+    <div class="logout">退出登录</div>
   </div>
 </template>
 <script>
