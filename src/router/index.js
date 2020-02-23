@@ -56,6 +56,11 @@ export default new Router({
           component: resolve =>require(['../views/user/consult/consult'],resolve),
         },
         {
+          path: 'detail',
+          name: 'detail',
+          component: resolve =>require(['../views/user/consult/detail'],resolve),
+        },
+        {
           path: 'statistics',
           name: 'statistics',
           component: resolve =>require(['../views/user/statistics/statistics'],resolve),

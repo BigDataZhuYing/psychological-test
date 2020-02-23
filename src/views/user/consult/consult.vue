@@ -12,7 +12,7 @@
       </form>
     </div>
     <div class="contant">
-      <div class="cont-item" v-for="(item, index) of dataConfig" :key="index" @click="topage(index)" >
+      <div class="cont-item" v-for="(item, index) of dataConfig" :key="index" @click="topage(item,index)" >
         <div :class="{'selected':index == selectedIndex}">
           <div class="cont-left">
             <span>{{item.name.substr(item.name.length - 2)}}</span>
@@ -34,25 +34,59 @@ export default {
       value: null,
       selectedIndex: -1,
       dataConfig:[
-        {head: '', name: '赵起超', content: 'ffffff'},
-        {head: '', name: '王杰', content: 'hdfuhjh'},
-        {head: '', name: '朱莹', content: 'dfsddddd'},
-        {head: '', name: '空间很大声', content: 'kyuughhhh'},
+        {sno: 20160000, name: '赵起超', content: ''},
+        {sno: 20160001, name: '王杰', content: ''},
+        {sno: 20160002, name: '苏大荣', content: ''},
+        {sno: 20160003, name: '快快快', content: ''},
       ]
     }
   },
+  created() {
+    let dataConfig = [
+        {sno: 20160000, name: '赵起超', content: ''},
+        {sno: 20160001, name: '王杰', content: ''},
+        {sno: 20160002, name: '苏大荣', content: ''},
+        {sno: 20160003, name: '快快快', content: ''},
+    ];
+    let content = '';
+    for (let i = 0; i < dataConfig.length; i++) {
+      // if(dataConfig[i].sno == this.$route.params.sno) {
+      //   dataConfig[i].content = this.$route.params.content
+      // }
+    }
+    
+  },
   methods: {
     onSearch() {
-
+      const stuNumbers = [20160000,20160001,20160002,20160003,20160004,20160005,20160006,20160007];
+      stuNumbers.forEach(item => {
+        if(this.value == item) {
+          console.log(item);
+          this.$router.push({
+          name: 'detail',
+          params: {
+            name: item,
+            sno: item
+          }
+      });
+        }
+      });
     },
     onCancel() {
 
     },
-    topage(i) {
+    topage(item, i) {
       this.selectedIndex = i;
       setTimeout(() => {
         this.selectedIndex = 5;
-      },500)
+      },500);
+      this.$router.push({
+          name: 'detail',
+          params: {
+            name: item.name,
+            sno: item.sno
+          }
+      });
     }
   }
 }
