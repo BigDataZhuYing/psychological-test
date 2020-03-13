@@ -27,7 +27,8 @@ Vue.use(Button).use(Tab).use(Toast).use(Tabs).use(Tabbar).use(TabbarItem).use(Sw
 .use(Dialog).use(Circle).use(Progress).use(Tag).use(RadioGroup).use(Radio).use(Uploader)
 .use(ImagePreview).use(DropdownMenu).use(DropdownItem).use(PullRefresh).use(Search);
 
-Vue.use(VueAxios,axios);
+// Vue.use(VueAxios,axios);
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

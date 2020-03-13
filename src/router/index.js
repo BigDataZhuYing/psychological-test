@@ -36,6 +36,11 @@ export default new Router({
           component: resolve =>require(['../views/user/test/test'],resolve),
         },
         {
+          path: 'testing',//以“/”开头的嵌套路径会被当作根路径，所以子路由上不用加“/”;在生成路由时，主路由上的path会被自动添加到子路由之前，所以子路由上的path不用在重新声明主路由上的path了。
+          name: 'testing',
+          component: resolve =>require(['../views/user/test/testing'],resolve),
+        },
+        {
           path: 'myset',
           name: 'myset',
           component: resolve =>require(['../views/user/myset/myset'],resolve),
@@ -64,7 +69,32 @@ export default new Router({
           path: 'statistics',
           name: 'statistics',
           component: resolve =>require(['../views/user/statistics/statistics'],resolve),
-        }
+        },
+        {
+          path: 'information',
+          name: 'information',
+          component: resolve =>require(['../views/user/myset/information'],resolve),
+        },
+        {
+          path: 'collection',
+          name: 'collection',
+          component: resolve =>require(['../views/user/myset/collection'],resolve),
+        },
+        {
+          path: 'comment',
+          name: 'comment',
+          component: resolve =>require(['../views/user/myset/comment'],resolve),
+        },
+        {
+          path: 'setting',
+          name: 'setting',
+          component: resolve =>require(['../views/user/myset/setting'],resolve),
+        },
+        {
+          path: 'teaching-detail',
+          name: 'teaching-detail',
+          component: resolve =>require(['../views/user/myset/teaching-detail'],resolve),
+        },
       ]
     }
   ]

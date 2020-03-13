@@ -42,7 +42,7 @@
               <span v-if="item.overstep" style="font-size:14px" @click="open(index,item.isHidden)">{{item.isHidden ? '阅读全文' : '收起'}}</span>
             </div>
             <div class="operation">
-              <!-- <span><van-icon name="chat" />评论</span> -->
+              <span><van-icon name="delete" v-if="uerType != 2"/>删除</span>
               <span><van-icon :name="item.like ? 'like': 'like-o'" class="like" @click="itemLike(index)"/>喜欢</span>
             </div>
           </div>
@@ -51,6 +51,7 @@
       <button class="release" ref="release" @click="toTrends()">
         <van-icon name="plus" />
       </button>
+      
     </div>
   </div>
   <div class="trends"  :style="{display: showTrends}">
@@ -66,6 +67,7 @@
   export default {
     data() {
       return {
+        uerType: null,
         teachingconfig:{
           title: '高校教师开家庭音乐会，为亲朋好友送春节祝福',
           content: '哈哈哈经检查宝宝崇拜结算单辉煌成就大V从V型你v 技术的结合实际的环境的开车距被查出滞纳金科技市场健康大会地产界的环境',
@@ -105,6 +107,7 @@
       }
     },
     created() {
+      this.userType = this.$store.state.userType;
       this.teachingconfig.star = this.$route.params.star;
       this.teachingconfig.like = this.$route.params.like;
       this.studentComment = this.$store.state.studentComment;
@@ -129,7 +132,8 @@
            name: 'teaching',
            params: {
              star: this.teachingconfig.star,
-             like: this.teachingconfig.like
+             like: this.teachingconfig.like,
+             routerName: 'homeIndex'
            }
         });
       },
@@ -157,7 +161,10 @@
       send() {
         this.showTrends = 'none';
         this.$store.commit('changeStudentComment',{overstep: false, isHidden: false, name: '朱莹', time: '02/21 12:23', content:this.newMessage, like: false})
-        
+        setTimeout(() => {
+          this.update();
+        }, 100);
+        this.newMessage = '';
       }
       
     }
@@ -184,6 +191,7 @@
   background-repeat:no-repeat;
   background-size:100% 100%;
   -moz-background-size:100% 100%;
+  z-index: 500;
 }
 .head span{
   margin-top: 50px;
@@ -294,7 +302,7 @@
   line-height: 40px;
   font-size: 14px;
   width: 60px;
-  margin: 0 20px;
+  /* margin-right: 20px; */
   cursor: pointer;
 }
 .like{

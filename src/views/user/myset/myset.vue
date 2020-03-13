@@ -8,10 +8,10 @@
         <span style="font-size:14px">{{majorName}}</span>
       </span>
     </div>
-    <div  v-for="(item, index) of settings" :key="index" @click="topage(index)" >
+    <div  v-for="(item, index) of settings" :key="index" @click="topage(index, item.router)" >
       <van-cell :title="item.title" is-link :icon="item.icon" :class="{'setting':index == settingIndex}"/>
     </div>
-    <div class="logout">退出登录</div>
+    
   </div>
 </template>
 <script>
@@ -23,10 +23,10 @@ export default {
       majorName: '信息管理与信息系统2班',
       settingIndex: 5,
       settings:[
-        {title: '个人信息', icon: 'manager-o'},
-        {title: '我的收藏', icon: 'star-o'},
-        {title: '设置', icon: 'setting-o'},
-        {title: '我的提议', icon: 'comment-o'},
+        {router: 'information', title: '个人信息', icon: 'manager-o'},
+        {router: 'collection', title: '我的收藏', icon: 'star-o'},
+        {router: 'setting', title: '设置', icon: 'setting-o'},
+        {router: 'comment', title: '我的提议', icon: 'comment-o'},
       ]
     }
   },
@@ -34,9 +34,10 @@ export default {
     setTitle() {
       
     },
-    topage(i) {
+    topage(i, routerName) {
       this.settingIndex = i;
       setTimeout(() => {
+        this.$router.push({name: routerName});
         this.settingIndex = 5;
       },0)
     }
@@ -82,4 +83,5 @@ export default {
   .setting{
     background: #f7f8fa;
   }
+
 </style>

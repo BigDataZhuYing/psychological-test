@@ -1,7 +1,7 @@
 <template>
   <div class="consult">
     <div class="head"><van-icon name="arrow-left" @click="back()"/>{{communications[sno].name}} </div>
-    <div class="content" >
+    <div class="content" ref="content">
         <div v-for="(item, index) of communications[sno].communication" :key="index">
         <div class="communication-left" v-if="!item.type">
             <div class="cont-left">
@@ -25,8 +25,8 @@
         </div>
     </div>
     <div class="bottom">
-        <input type="text" >
-        <button class="send" >发送</button>
+        <input type="text" v-model="newMessage">
+        <button class="send" @click="send()">发送</button>
     </div>
   </div>
 </template>
@@ -37,6 +37,7 @@ export default {
       opposite: '',
       name: '朱莹',
       sno: null,
+      newMessage: '',
       communications:{
         20160000:{
             name: '赵起超',
@@ -122,10 +123,23 @@ export default {
       this.opposite = this.$route.params.name;
       this.sno = this.$route.params.sno;
   },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.content.scrollTop = this.$refs.content.scrollHeight - this.$refs.content.offsetHeight;
+    }, 0);
+  },
   methods: {
     back() {
         this.$router.go(-1);
+    },
+    send() {
+      this.communications[this.sno].communication.push({type: true, content: this.newMessage});
+      this.newMessage = '';
+      setTimeout(() => {
+        this.$refs.content.scrollTop = this.$refs.content.scrollHeight - this.$refs.content.offsetHeight;
+      }, 0);
     }
+  
   }
 }
 </script>

@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 export default new Vuex.Store({
     state:{
+        userName: '',
+        userType: null,
         commentTotal: [
             {name: '赵起超',content: '好的护肤就是疯狂就看电视看看书看书 '},
             {name: '赵起超',content: '好的护肤就是疯狂就看电视看看书看书 '},
@@ -35,6 +37,9 @@ export default new Vuex.Store({
             const studentComment = state.studentComment;
             studentComment.unshift(commentItem);
             this.studentComment = studentComment;
+        },
+        changeUserType(state, userType){
+            state.userType = userType;
         }
     },
     actions:{

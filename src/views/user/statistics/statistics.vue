@@ -2,7 +2,7 @@
 <div class="statistics">
   <div class="content">
     <div class="header">统计</div>
-    <div class="myprocess">
+    <div class="myprocess" v-if="userType == 2">
       <p class="test-result-name">个人测评成绩结果展示</p>
       <div v-for="(item, index) of testResult" :key="index"  class="test-result">
         <span style="width:40px;">{{item.result}}分</span>
@@ -12,9 +12,9 @@
         <span>{{item.time}}</span>
       </div>
     </div>
-    <div id="myChart" :style="{width: '100%', height: '300px'}"></div>
-    <div id="myChart1" :style="{width: '100%', height: '300px'}"></div>
-    <div class="limit">
+    <div v-if="userType == 2" id="myChart" :style="{width: '100%', height: '300px'}"></div>
+    <div  id="myChart1" :style="{width: '100%', height: '300px'}"></div>
+    <div class="limit" v-if="userType == 2">
       <p><b> 此次测评最高分：96分</b></p>
       <p><b> 此次测评最低分：52分</b></p>
     </div>
@@ -25,6 +25,7 @@
   export default {
     data() {
       return {
+        userType: null,
         testResult: [
           {time: '2019.12.12',result: '96'},
           {time: '2019.9.12',result: '90'},
@@ -54,6 +55,7 @@
       }
     },
     created() {
+      this.userType = this.$store.state.userType;
       this.testResult.forEach(item => {
         this.time.push(item.time);
       });
